@@ -25,6 +25,6 @@
     "href": "index.html#part-2-time-series",
     "title": "DSAN 6300: Mini-Project",
     "section": "Part 2: Time Series",
-    "text": "Part 2: Time Series\n\nflight_report$FlightDate &lt;- as.Date(flight_report$FlightDate)\n\nflight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + \ngeom_point(size = 3) + \nlabs(xlab = \"Date\", y = \"Average Number of Flights (Past Three Days)\", title = \"Average Number of Flights over the Past Three Days in June, 2019\") + \ntheme(plot.title = element_text(hjust = 0.5))"
+    "text": "Part 2: Time Series\n\nflight_report$FlightDate &lt;- as.Date(flight_report$FlightDate)\nflight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + \ngeom_point(size = 3) + \nlabs(xlab = \"Date\", y = \"Average Number of Flights (Past Three Days)\", title = \"Average Number of Flights over the Past Three Days in June, 2019\") + \ntheme(plot.title = element_text(hjust = 0.5))"
   }
 ]

@@ -13,7 +13,6 @@ Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! 
 
 ```{r}
 #| collapse: true
-
 library(dplyr)
 library(ggplot2)
 rank_days <- read.csv('data/rank_days.csv')
@@ -30,9 +29,7 @@ airport_max_delay <- read.csv('data/airport_max_delay.csv')
 
 ```{r}
 #| collapse: true
-
 flight_report$FlightDate <- as.Date(flight_report$FlightDate)
-
 flight_report |> ggplot(aes(x=FlightDate, y=three_day_avg)) + 
 geom_point(size = 3) + 
 labs(xlab = "Date", y = "Average Number of Flights (Past Three Days)", title = "Average Number of Flights over the Past Three Days in June, 2019") + 
