@@ -9,22 +9,22 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "website",
+    "title": "DSAN 6300: Mini-Project",
     "section": "",
     "text": "Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you’ll see the data has already been processed into csvs and is simply being visualized. Prior to the data visualization, the below data was queried using mysql and exported from mysql workbench."
   },
   {
     "objectID": "index.html#part-1-data-and-package-loading",
     "href": "index.html#part-1-data-and-package-loading",
-    "title": "website",
+    "title": "DSAN 6300: Mini-Project",
     "section": "Part 1: Data and Package Loading",
-    "text": "Part 1: Data and Package Loading\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(ggplot2)\nrank_days &lt;- read.csv('data/rank_days.csv')\nmax_early &lt;- read.csv('data/max_early.csv')\nmax_delay &lt;- read.csv('data/max_delay.csv')\nmax_avg_delay &lt;- read.csv('data/max_avg_delay.csv')\nflight_report &lt;- read.csv('data/flight_report.csv')\ncancelled_reason &lt;- read.csv('data/cancelled_reason.csv')\ncancelled_flights &lt;- read.csv('data/cancelled_flights.csv')\nairport_max_delay &lt;- read.csv('data/airport_max_delay.csv')"
+    "text": "Part 1: Data and Package Loading\n\nlibrary(dplyr)\n## \n## Attaching package: 'dplyr'\n## The following objects are masked from 'package:stats':\n## \n##     filter, lag\n## The following objects are masked from 'package:base':\n## \n##     intersect, setdiff, setequal, union\nlibrary(ggplot2)\nrank_days &lt;- read.csv('data/rank_days.csv')\nmax_early &lt;- read.csv('data/max_early.csv')\nmax_delay &lt;- read.csv('data/max_delay.csv')\nmax_avg_delay &lt;- read.csv('data/max_avg_delay.csv')\nflight_report &lt;- read.csv('data/flight_report.csv')\ncancelled_reason &lt;- read.csv('data/cancelled_reason.csv')\ncancelled_flights &lt;- read.csv('data/cancelled_flights.csv')\nairport_max_delay &lt;- read.csv('data/airport_max_delay.csv')"
   },
   {
     "objectID": "index.html#part-2-time-series",
     "href": "index.html#part-2-time-series",
-    "title": "website",
+    "title": "DSAN 6300: Mini-Project",
     "section": "Part 2: Time Series",
-    "text": "Part 2: Time Series\nflight_report\\(FlightDate &lt;- as.Date(flight_report\\)FlightDate)\nflight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + geom_point(size = 3) + labs(xlab = “Date”, y = “Average Number of Flights (Past Three Days)”, title = “Average Number of Flights over the Past Three Days in June, 2019”) + theme(plot.title = element_text(hjust = 0.5))"
+    "text": "Part 2: Time Series\n\nflight_report$FlightDate &lt;- as.Date(flight_report$FlightDate)\n\nflight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + \ngeom_point(size = 3) + \nlabs(xlab = \"Date\", y = \"Average Number of Flights (Past Three Days)\", title = \"Average Number of Flights over the Past Three Days in June, 2019\") + \ntheme(plot.title = element_text(hjust = 0.5))"
   }
 ]
