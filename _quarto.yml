@@ -12,7 +12,7 @@ website:
 
 format:
   html:
-    code-fold: false
+    code-fold: true
     theme:
       - cosmo
       - brand
