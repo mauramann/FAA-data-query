@@ -7,12 +7,13 @@ format:
     toc-title: "Table of Contents"
 ---
 
-Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you'll see the data has already been processed into csvs and is simply being visualized. Prior to the data visualization, the below data was queried using mysql and exported from mysql workbench.
+Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you'll see the data has already been processed into csvs and is simply being visualized. Prior to the data visualization, the below data was queried using MySql and exported from MySql Workbench.
 
 ## Part 1: Data and Package Loading
 
 ```{r}
 #| collapse: true
+
 library(dplyr)
 library(ggplot2)
 rank_days <- read.csv('data/rank_days.csv')
@@ -29,6 +30,7 @@ airport_max_delay <- read.csv('data/airport_max_delay.csv')
 
 ```{r}
 #| collapse: true
+
 flight_report$FlightDate <- as.Date(flight_report$FlightDate)
 
 flight_report |> ggplot(aes(x=FlightDate, y=three_day_avg)) + 

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "website"
+  title: "Project"
   navbar:
     left:
       - href: index.qmd
@@ -12,6 +12,7 @@ website:
 
 format:
   html:
+    code-fold: false
     theme:
       - cosmo
       - brand

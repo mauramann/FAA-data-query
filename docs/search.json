@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "DSAN 6300: Mini-Project",
     "section": "",
-    "text": "Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you’ll see the data has already been processed into csvs and is simply being visualized. Prior to the data visualization, the below data was queried using mysql and exported from mysql workbench."
+    "text": "Welcome to the Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you’ll see the data has already been processed into csvs and is simply being visualized. Prior to the data visualization, the below data was queried using MySql and exported from MySql Workbench."
   },
   {
     "objectID": "index.html#part-1-data-and-package-loading",
