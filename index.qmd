@@ -60,19 +60,20 @@ p <- cor(combined_data$Max_Early, combined_data$Max_Delay)
 print(p)
 ```
 
-## Part 4: ??? - Airports
+## Part 4: Deep Dive - Airports
 
 ```{r}
 max_avg_delay$Origin <- factor(max_avg_delay$Origin, levels = max_avg_delay$Origin)
+max_avg_delay <- max_avg_delay |> arrange(Avg_Delay)
 
-max_avg_delay = max_avg_delay |> arrange(Avg_Delay)
+top50 <- head(max_avg_delay, 50)
 
-max_avg_delay |> ggplot(aes(x=Origin, y=Avg_Delay)) +
+top50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay)) +
   geom_point() +
   theme_minimal() +
   coord_flip() +
   xlab("") +
-  ylab("Value of Y") +
-  ggtitle("Placeholder")
+  ylab("Average Delay (Min)") +
+  ggtitle("Top 50 Airports with the Greatest Average Delays")
 ```

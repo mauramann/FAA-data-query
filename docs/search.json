@@ -35,10 +35,10 @@
     "text": "Part 3: Multi-Numeric Variable Trend - Airlines\n\n\nCode\ncombined_data &lt;- inner_join(max_delay, max_early, by = \"name\")\ncombined_data$Max_Early &lt;- abs(combined_data$Max_Early)\n\nmy_scatterplot &lt;- combined_data |&gt; ggplot(aes(x=Max_Early, y=Max_Delay, color = name)) +\ngeom_point(shape = 18) +\ntheme_minimal()+\nlabs(x = \"Maximum Early Departure (Min)\", y = \"Maximum Flight Delay (Min)\", color = \"Airline\", title = \"Airline Maximum Early Departure vs Delay\") + \ntheme(plot.title = element_text(size = 11, hjust = 0.5), legend.position = \"none\")\ninteractive_scatter &lt;- ggplotly(my_scatterplot)\ninteractive_scatter\n\n\n\n\n\n\n\nPearson Correlation Coefficient\n\n\nCode\np &lt;- cor(combined_data$Max_Early, combined_data$Max_Delay)\nprint(p)\n\n\n[1] 0.06169178"
   },
   {
-    "objectID": "index.html#part-4---airports",
-    "href": "index.html#part-4---airports",
+    "objectID": "index.html#part-4-deep-dive---airports",
+    "href": "index.html#part-4-deep-dive---airports",
     "title": "DSAN 6300: Mini-Project",
-    "section": "Part 4: ??? - Airports",
-    "text": "Part 4: ??? - Airports\n\n\nCode\nmax_avg_delay$Origin &lt;- factor(max_avg_delay$Origin, levels = max_avg_delay$Origin)\n\nmax_avg_delay = max_avg_delay |&gt; arrange(Avg_Delay)\n\nmax_avg_delay |&gt; ggplot(aes(x=Origin, y=Avg_Delay)) +\n  geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay)) +\n  geom_point() +\n  theme_minimal() +\n  coord_flip() +\n  xlab(\"\") +\n  ylab(\"Value of Y\") +\n  ggtitle(\"Placeholder\")"
+    "section": "Part 4: Deep Dive - Airports",
+    "text": "Part 4: Deep Dive - Airports\n\n\nCode\nmax_avg_delay$Origin &lt;- factor(max_avg_delay$Origin, levels = max_avg_delay$Origin)\nmax_avg_delay &lt;- max_avg_delay |&gt; arrange(Avg_Delay)\n\ntop50 &lt;- head(max_avg_delay, 50)\n\ntop50 |&gt; ggplot(aes(x=Origin, y=Avg_Delay)) +\n  geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay)) +\n  geom_point() +\n  theme_minimal() +\n  coord_flip() +\n  xlab(\"\") +\n  ylab(\"Average Delay (Min)\") +\n  ggtitle(\"Top 50 Airports with the Greatest Average Delays\")"
   }
 ]
