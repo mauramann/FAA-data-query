@@ -1,5 +1,10 @@
 ---
 title: "About"
+format: html
 ---
 
-About this site
+Hi! My name is Maura Mann and I'm a first year graduate student at Georgetown University studying Data Science & Analytics. I've put together this website to serve as a landing page to view data visualizations of flight data from June 2019.
+
+The data itself was collected from United States Department of Transportation Bureau of Transportation Statistics.
+
+It can be found here: [Transportation Statistics](hhttps://www.transtats.bts.gov)
