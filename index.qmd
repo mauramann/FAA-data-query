@@ -40,7 +40,7 @@ Next, I wanted to explore the number of flights. I first made a time series grap
 
 Hover over the data points to see the fluctuations in the number of flights over the month!
 
-I observed a cylical pattern where the past three day average number of flights was lower on the weekends and higher during the week. This may reflect the fact that airlines cater more flights for business travel during week during a non-holiday heavy month.
+I observed a cylical pattern where the past three day average number of flights was lower on the weekends and higher during the week. This may reflect the fact that airlines cater more flights for business travel during the week for a non-holiday heavy month.
 
 ```{r}
 # Make sure flights date are date type
@@ -56,6 +56,7 @@ theme(plot.title = element_text(size = 11, hjust = 0.5))
 interactive_plot <- ggplotly(my_time_series)
 interactive_plot
 ```
+
 
 Secondly, I looked at the overall break down of number of flights per week day. The weekend has a slightly larger number of total flights, however, the weekdays are all about even and not far off from the weekend values. This tells me that even though Saturday and Sunday have higher flight numbers, their past three day averages get lowered either by a lower week day value and/or week day values having consistently high values throughout the entire month. 
 
@@ -121,11 +122,12 @@ top50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   color=ifelse((top50$Origin == "PAH"), "orange","black"),
   size=ifelse((top50$Origin == "PAH"), 1.5, 0.6)) +
   geom_point(color=ifelse((top50$Origin == "PAH"), "orange","black"),
-  size=ifelse((top50$Origin == "PAH"), 4, 1)) +
+  size=ifelse((top50$Origin == "PAH"), 3, 1)) +
   theme_minimal() +
   coord_flip() +
   labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Greatest Average Delays")+
-  annotate("text", x=grep("OTH", top50$Origin)*0.75, y=top50$Avg_Delay[which(top50$Origin=="OTH")]*1.01, label="Barkley Regional", color="orange", size=3 , angle=0, fontface="bold", hjust=0)
+  theme(axis.text.x = element_text(size = 8)) +
+  annotate("text", x=grep("OTH", top50$Origin)*1.75, y=top50$Avg_Delay[which(top50$Origin=="OTH")]*1.01, label="Barkley Regional", color="orange", size=2 , angle=0, fontface="bold", hjust=0)
 ```
 
 Similarly, I wanted to look at the bottom 50 airports that had the lowest average delay.
@@ -142,10 +144,11 @@ back50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   color=ifelse((back50$Origin == "AKN"), "orange", "black"),
   size=ifelse((back50$Origin == "AKN"), 1.5, 0.6)) +
   geom_point(color=ifelse((back50$Origin == "AKN"), "orange", "black"),
-  size=ifelse((back50$Origin == "AKN"), 4, 1)) +
+  size=ifelse((back50$Origin == "AKN"), 3, 1)) +
   theme_minimal() +
   coord_flip() +
-  labs(x = "", y = "Average Delay (Min)", title = "Bottom 50 Airports with the Greatest Average Delays")+
+  labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Lowest Average Delays")+
+  theme(axis.text.x = element_text(size = 8)) +
   annotate("text", x=grep("AKN", back50$Origin), y=back50$Avg_Delay[which(back50$Origin=="AKN")]*1.2, label="King Salmon Airport", color="orange", size=3 , angle=0, fontface="bold", hjust=0)
 ```
 
@@ -179,6 +182,8 @@ Lastly, I wanted to look at cancelled flights as in June 2019 alone, there were 
 - Carrier: the airline itself cancelled the flight (up to their discretion).
 - National Air System: the flight had to be cancelled due to a directive from the Federal Aviation Administration.
 
+The below graph simply only summarizes the cancellation reasons that were the top reason at each airport.
+
 ```{r}
 # Create summary table
 cancelled_summary <- cancelled_reason |>
@@ -193,4 +198,4 @@ type="pie")
 my_piechart |> layout(title = list(text="Flight Cancellations by Reason"))
 ```
 
-As you can see, Weather is more than 50% of the reason flights are cancelled. If you haven't already before, it's important to monitor the weather the day of your flight and be prepared for a possible cancellation.
+As you can see, Weather is more than 50% of the top reason flights are cancelled. If you haven't already before, it's important to monitor the weather the day of your flight and be prepared for a possible cancellation.
