@@ -25,20 +25,20 @@
     "href": "index.html#part-2-time-series---number-of-flights",
     "title": "DSAN 6300: Mini-Project",
     "section": "Part 2: Time Series - Number of Flights",
-    "text": "Part 2: Time Series - Number of Flights\n\n\nCode\nflight_report$FlightDate &lt;- as.Date(flight_report$FlightDate)\nmy_time_series &lt;- flight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + \ngeom_point(size = 1) + \ngeom_area(alpha = 1/2, fill = 'lightblue') +\nlabs(x = \"Date\", y = \"Average Number of Flights (Past Three Days)\", title = \"Average Number of Flights over the Past Three Days in June, 2019\") + \ntheme(plot.title = element_text(size = 8, hjust = 0.5))\ninteractive_plot &lt;- ggplotly(my_time_series)\ninteractive_plot"
+    "text": "Part 2: Time Series - Number of Flights\n\n\nCode\nflight_report$FlightDate &lt;- as.Date(flight_report$FlightDate)\nmy_time_series &lt;- flight_report |&gt; ggplot(aes(x=FlightDate, y=three_day_avg)) + \ngeom_point(size = 1) + \ngeom_area(alpha = 1/2, fill = 'lightblue') +\ntheme_minimal()+\nlabs(x = \"Date\", y = \"Average Number of Flights (Past Three Days)\", title = \"Average Number of Flights over the Past Three Days in June, 2019\") + \ntheme(plot.title = element_text(size = 11, hjust = 0.5))\ninteractive_plot &lt;- ggplotly(my_time_series)\ninteractive_plot"
   },
   {
     "objectID": "index.html#part-3-multi-numeric-variable-trend---airlines",
     "href": "index.html#part-3-multi-numeric-variable-trend---airlines",
     "title": "DSAN 6300: Mini-Project",
     "section": "Part 3: Multi-Numeric Variable Trend - Airlines",
-    "text": "Part 3: Multi-Numeric Variable Trend - Airlines\n\n\nCode\ncombined_data &lt;- inner_join(max_delay, max_early, by = \"name\")\ncombined_data$Max_Early &lt;- abs(combined_data$Max_Early)\n\nmy_scatterplot &lt;- combined_data |&gt; ggplot(aes(x=Max_Early, y=Max_Delay, color = name)) +\ngeom_point(shape = 18) +\ntheme_minimal()+\nlabs(x = \"Maximum Early Departure (Min)\", y = \"Maximum Flight Delay (Min)\", color = \"Airline\", title = \"Airline Maximum Early Departure vs Delay\") + \ntheme(plot.title = element_text(size = 11, hjust = 0.5), legend.position = \"none\")\ninteractive_scatter &lt;- ggplotly(my_scatterplot)\ninteractive_scatter"
+    "text": "Part 3: Multi-Numeric Variable Trend - Airlines\n\n\nCode\ncombined_data &lt;- inner_join(max_delay, max_early, by = \"name\")\ncombined_data$Max_Early &lt;- abs(combined_data$Max_Early)\n\nmy_scatterplot &lt;- combined_data |&gt; ggplot(aes(x=Max_Early, y=Max_Delay, color = name)) +\ngeom_point(shape = 18) +\ntheme_minimal()+\nlabs(x = \"Maximum Early Departure (Min)\", y = \"Maximum Flight Delay (Min)\", color = \"Airline\", title = \"Airline Maximum Early Departure vs Delay\") + \ntheme(plot.title = element_text(size = 11, hjust = 0.5), legend.position = \"none\")\ninteractive_scatter &lt;- ggplotly(my_scatterplot)\ninteractive_scatter\n\n\n\n\n\n\n\nPearson Correlation Coefficient\n\n\nCode\np &lt;- cor(combined_data$Max_Early, combined_data$Max_Delay)\nprint(p)\n\n\n[1] 0.06169178"
   },
   {
-    "objectID": "index.html#part-4-geospatial---airports",
-    "href": "index.html#part-4-geospatial---airports",
+    "objectID": "index.html#part-4---airports",
+    "href": "index.html#part-4---airports",
     "title": "DSAN 6300: Mini-Project",
-    "section": "Part 4: Geospatial - Airports",
-    "text": "Part 4: Geospatial - Airports"
+    "section": "Part 4: ??? - Airports",
+    "text": "Part 4: ??? - Airports\n\n\nCode\nmax_avg_delay$Origin &lt;- factor(max_avg_delay$Origin, levels = max_avg_delay$Origin)\n\nmax_avg_delay = max_avg_delay |&gt; arrange(Avg_Delay)\n\nmax_avg_delay |&gt; ggplot(aes(x=Origin, y=Avg_Delay)) +\n  geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay)) +\n  geom_point() +\n  theme_minimal() +\n  coord_flip() +\n  xlab(\"\") +\n  ylab(\"Value of Y\") +\n  ggtitle(\"Placeholder\")"
   }
 ]

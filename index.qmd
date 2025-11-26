@@ -32,8 +32,9 @@ flight_report$FlightDate <- as.Date(flight_report$FlightDate)
 my_time_series <- flight_report |> ggplot(aes(x=FlightDate, y=three_day_avg)) + 
 geom_point(size = 1) + 
 geom_area(alpha = 1/2, fill = 'lightblue') +
+theme_minimal()+
 labs(x = "Date", y = "Average Number of Flights (Past Three Days)", title = "Average Number of Flights over the Past Three Days in June, 2019") + 
-theme(plot.title = element_text(size = 8, hjust = 0.5))
+theme(plot.title = element_text(size = 11, hjust = 0.5))
 interactive_plot <- ggplotly(my_time_series)
 interactive_plot
 ```
@@ -53,10 +54,25 @@ interactive_scatter <- ggplotly(my_scatterplot)
 interactive_scatter
 ```
 
-# Pearson Correlation Coefficient
+### Pearson Correlation Coefficient
 ```{r}
 p <- cor(combined_data$Max_Early, combined_data$Max_Delay)
 print(p)
 ```
 
-## Part 4: Geospatial - Airports
+## Part 4: ??? - Airports
+
+```{r}
+max_avg_delay$Origin <- factor(max_avg_delay$Origin, levels = max_avg_delay$Origin)
+
+max_avg_delay = max_avg_delay |> arrange(Avg_Delay)
+
+max_avg_delay |> ggplot(aes(x=Origin, y=Avg_Delay)) +
+  geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay)) +
+  geom_point() +
+  theme_minimal() +
+  coord_flip() +
+  xlab("") +
+  ylab("Value of Y") +
+  ggtitle("Placeholder")
+```
