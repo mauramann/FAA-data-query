@@ -122,9 +122,9 @@ top50 <- head(max_avg_delay, 50)
 # Plot lollipop graph
 top50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay),
-  color=ifelse((top50$Origin == "PAH"), "orange","black"),
+  color=ifelse((top50$Origin == "PAH"), "purple","black"),
   size=ifelse((top50$Origin == "PAH"), 1.5, 0.6)) +
-  geom_point(color=ifelse((top50$Origin == "PAH"), "orange","black"),
+  geom_point(color=ifelse((top50$Origin == "PAH"), "purple","black"),
   size=ifelse((top50$Origin == "PAH"), 3, 1)) +
   theme_minimal() +
   coord_flip() +
@@ -144,9 +144,9 @@ back50 <- tail(max_avg_delay, 50)
 # Plot Lollipop graph
 back50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   geom_segment(aes(x=Origin, xend=Origin, y=0, yend=Avg_Delay),
-  color=ifelse((back50$Origin == "AKN"), "orange", "black"),
+  color=ifelse((back50$Origin == "AKN"), "purple", "black"),
   size=ifelse((back50$Origin == "AKN"), 1.5, 0.6)) +
-  geom_point(color=ifelse((back50$Origin == "AKN"), "orange", "black"),
+  geom_point(color=ifelse((back50$Origin == "AKN"), "purple", "black"),
   size=ifelse((back50$Origin == "AKN"), 3, 1)) +
   theme_minimal() +
   coord_flip() +
