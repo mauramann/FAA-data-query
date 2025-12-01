@@ -129,8 +129,8 @@ top50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   theme_minimal() +
   coord_flip() +
   labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Greatest Average Delays")+
-  theme(axis.text.x = element_text(size = 7)) +
-  annotate("text", x=grep("OTH", top50$Origin)*1.75, y=top50$Avg_Delay[which(top50$Origin=="OTH")]*1.01, label="Barkley Regional", color="orange", size=2 , angle=0, fontface="bold", hjust=0)
+  theme(axis.text.x = element_text(size = 8), axis.text.y = element_text(size = 7)) +
+  annotate("text", x=grep("OTH", top50$Origin)*1.75, y=top50$Avg_Delay[which(top50$Origin=="OTH")]*1.01, label="Barkley Regional", color="purple", size=2 , angle=0, fontface="bold", hjust=0)
 ```
 
 Similarly, I wanted to look at the bottom 50 airports that had the lowest average delay.
@@ -151,8 +151,8 @@ back50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   theme_minimal() +
   coord_flip() +
   labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Lowest Average Delays")+
-  theme(axis.text.x = element_text(size = 7)) +
-  annotate("text", x=grep("AKN", back50$Origin), y=back50$Avg_Delay[which(back50$Origin=="AKN")]*1.2, label="King Salmon Airport", color="orange", size=2.5 , angle=0, fontface="bold", hjust=0)
+  theme(axis.text.x = element_text(size = 8), axis.text.y = element_text(size = 7)) +
+  annotate("text", x=grep("AKN", back50$Origin), y=back50$Avg_Delay[which(back50$Origin=="AKN")]*1.2, label="King Salmon Airport", color="purple", size=2.5 , angle=0, fontface="bold", hjust=0)
 ```
 
 Looking specifically at airports and airlines, I then wanted to see which airport had the highest average delay for each airline. It turns out there's a lot of variability in airports as seen below!
