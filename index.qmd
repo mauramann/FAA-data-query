@@ -7,7 +7,7 @@ format:
     toc-title: "Table of Contents"
 ---
 
-Welcome to an Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you'll see the data has already been processed and is simply being visualized. Prior to the creation of the data visualizations below, the data was queried using MySql and exported from MySql Workbench.
+Welcome to an Exploratory Data Analysis of flights in the U.S. from June 2019! As you scroll down, you'll see the data has already been processed and is simply being visualized. Prior to the creation of the data visualizations below, the data was queried using MySql and exported from MySqlWorkbench.
 
 For more information on the data source, visit the About section.
 
@@ -15,7 +15,7 @@ As you scroll, you will see that many of the graphs are interactive. Please hove
 
 ## Part 1: Data and Package Load
 
-To start the project, I loaded data and packages. Importantly, the data I am exploring includes the total number of flights in June 2019 in the United States, the number of cancelled flights, airline specific information on delays/early departures, and airport specific information on delays.
+To start the project, I loaded data and packages. Importantly, the data I am exploring includes the total number of flights, the number of cancelled flights, airline specific information on delays/early departures, and airport specific information on delays, all from June 2019 in the United States.
 
 ```{r}
 # Load packages
@@ -43,7 +43,7 @@ Hover over the data points to see the fluctuations in the number of flights over
 I observed a cylical pattern where the past three day average number of flights was lower on the weekends and higher during the week. This may reflect the fact that airlines cater more flights for business travel during the week for a non-holiday heavy month.
 
 ```{r}
-# Make sure flights date are date type
+# Make sure flight dates are date type
 flight_report$FlightDate <- as.Date(flight_report$FlightDate)
 
 # Create time series interactive plot
@@ -57,6 +57,7 @@ interactive_plot <- ggplotly(my_time_series)
 interactive_plot
 ```
 
+<br>
 
 Secondly, I looked at the overall break down of number of flights per week day. The weekend has a slightly larger number of total flights, however, the weekdays are all about even and not far off from the weekend values. This tells me that even though Saturday and Sunday have higher flight numbers, their past three day averages get lowered either by a lower week day value and/or week day values having consistently high values throughout the entire month. 
 
@@ -94,6 +95,8 @@ interactive_scatter <- ggplotly(my_scatterplot)
 interactive_scatter
 ```
 
+<br>
+
 In viewing the graph, I don't see any correlation between the two variables. However, I wanted to verify this quickly by getting the pearson correlation coefficient.
 
 ### Pearson Correlation Coefficient
@@ -101,7 +104,7 @@ In viewing the graph, I don't see any correlation between the two variables. How
 cor(combined_data$Max_Early, combined_data$Max_Delay)
 ```
 
-The pearson correlation coefficient value reveals there is virtually no correlation at all between maximum early departure and maximum delay. This could be potentially very important information for travelers when booking since we can't confidently say that an airline with the lowest maximum delay also has the highest maximum early departure.
+The pearson correlation coefficient value reveals there is virtually no correlation at all between maximum early departure and maximum delay. This could be potentially very important information for travelers when booking since we can't confidently say that an airline with the lowest maximum delay also has the highest maximum early departure (and therefore shouldn't be a deciding factor when choosing an airline).
 
 ## Part 4: Airport Deep Dive 
 
@@ -126,7 +129,7 @@ top50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   theme_minimal() +
   coord_flip() +
   labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Greatest Average Delays")+
-  theme(axis.text.x = element_text(size = 8)) +
+  theme(axis.text.x = element_text(size = 7)) +
   annotate("text", x=grep("OTH", top50$Origin)*1.75, y=top50$Avg_Delay[which(top50$Origin=="OTH")]*1.01, label="Barkley Regional", color="orange", size=2 , angle=0, fontface="bold", hjust=0)
 ```
 
@@ -148,13 +151,13 @@ back50 |> ggplot(aes(x=Origin, y=Avg_Delay)) +
   theme_minimal() +
   coord_flip() +
   labs(x = "", y = "Average Delay (Min)", title = "Top 50 Airports with the Lowest Average Delays")+
-  theme(axis.text.x = element_text(size = 8)) +
-  annotate("text", x=grep("AKN", back50$Origin), y=back50$Avg_Delay[which(back50$Origin=="AKN")]*1.2, label="King Salmon Airport", color="orange", size=3 , angle=0, fontface="bold", hjust=0)
+  theme(axis.text.x = element_text(size = 7)) +
+  annotate("text", x=grep("AKN", back50$Origin), y=back50$Avg_Delay[which(back50$Origin=="AKN")]*1.2, label="King Salmon Airport", color="orange", size=2.5 , angle=0, fontface="bold", hjust=0)
 ```
 
-Looking specifically at airports and airline, I then wanted to see which airport had the highest average delay for each airline. It turns out there's a lot of variability in airports as seen below!
+Looking specifically at airports and airlines, I then wanted to see which airport had the highest average delay for each airline. It turns out there's a lot of variability in airports as seen below!
 
-If you like traveling with a specific airline, hover over the bubble  to see which airport you may want to avoid!
+If you like traveling with a specific airline, hover over the bubble  to see which airport you may want to avoid.
 
 ```{r}
 # Create bubble graph
@@ -199,3 +202,13 @@ my_piechart |> layout(title = list(text="Flight Cancellations by Reason"))
 ```
 
 As you can see, Weather is more than 50% of the top reason flights are cancelled. If you haven't already before, it's important to monitor the weather the day of your flight and be prepared for a possible cancellation.
+
+## Conclusion
+
+It's important for travelers to be informed when they're booking their flights. In each section, I looked into a different aspect of the airline industry to extract information. 
+
+When travelers are looking for flight options, they may want to know that there are overall more options on the weekend, but there may be more consistency during the week days. They should know that just because an airline hasn't had a large delay compared to other airlines, it doesn't necessarily mean they have the earliest take off times.
+
+Airports range in average delays. Travelers should be prepared to experience a delay based on potentially where they're flying out from and even experience a cancellation if there's bad weather.
+
+While this is just a glimpse, this project further shows that FAA data is very diverse and can be used to draw many conclusions about the U.S. air industry.
