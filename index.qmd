@@ -28,7 +28,7 @@ rank_days <- read.csv('data/rank_days.csv')
 max_early <- read.csv('data/max_early.csv')
 max_delay <- read.csv('data/max_delay.csv')
 max_avg_delay <- read.csv('data/max_avg_delay.csv')
-flight_report <- read.csv('data/flight_report.csv')
+flight_report <- read.csv('data/flight_reports.csv')
 cancelled_reason <- read.csv('data/cancelled_reason.csv')
 cancelled_flights <- read.csv('data/cancelled_flights.csv')
 airport_max_delay <- read.csv('data/airport_max_delay.csv')
@@ -40,26 +40,31 @@ Next, I wanted to explore the number of flights. I first made a time series grap
 
 Hover over the data points to see the fluctuations in the number of flights over the month!
 
-I observed a cylical pattern where the past three day average number of flights was lower on the weekends and higher during the week. This may reflect the fact that airlines cater more flights for business travel during the week for a non-holiday heavy month.
+I observed a cylical pattern where the past three day average number of flights was lower on Sunday, Monday, and Tuesday and higher on Wednesday, Thursday, Friday, and Saturday. This means when weekend numbers are rolled into the averages, they are lower.
 
 ```{r}
 # Make sure flight dates are date type
 flight_report$FlightDate <- as.Date(flight_report$FlightDate)
 
+# Clean data frame
+flight_report <- flight_report |> filter(FlightDate != "2019-06-01")
+flight_report$three_day_avg <- as.numeric(flight_report$three_day_avg)
+
 # Create time series interactive plot
 my_time_series <- flight_report |> ggplot(aes(x=FlightDate, y=three_day_avg)) + 
 geom_point(size = 1) + 
-geom_area(alpha = 1/2, fill = 'lightblue') +
+geom_area(alpha = 1/2, fill = 'lightblue')+
 theme_minimal()+
 labs(x = "Date", y = "Average Number of Flights (Past Three Days)", title = "Average Number of Flights over the Past Three Days in June, 2019") + 
 theme(plot.title = element_text(size = 11, hjust = 0.5))
+
 interactive_plot <- ggplotly(my_time_series)
 interactive_plot
 ```
 
 <br>
 
-Secondly, I looked at the overall break down of number of flights per week day. The weekend has a slightly larger number of total flights, however, the weekdays are all about even and not far off from the weekend values. This tells me that even though Saturday and Sunday have higher flight numbers, their past three day averages get lowered either by a lower week day value and/or week day values having consistently high values throughout the entire month. 
+Secondly, I looked at the overall break down of number of flights per week day. The weekend has a slightly larger number of total flights, however, the weekdays are all about even and not far off from the weekend values. This tells me that even though Saturday and Sunday have higher flight numbers, the past three day averages for Sunday, Monday, and Tuesday get lowered either by a lower week day value and/or week day values having consistent values throughout the entire month compared to weekends. 
 
 ```{r}
 # Load color palettes
